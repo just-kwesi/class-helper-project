@@ -4,7 +4,8 @@
   "description": "A fullstack commenting app",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index"
+    "start": "nodemon index",
+    "serve": "node index"
   },
   "author": "Frederick Tetteh",
   "license": "ISC",
