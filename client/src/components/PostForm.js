@@ -21,6 +21,9 @@ function PostForm() {
       proxy.writeQuery({ query: FETCH_POSTS_QUERY, data });
       values.body = "";
     },
+    onError(error) {
+      // console.log(error);
+    },
   });
 
   function createPostCallback() {
@@ -37,20 +40,20 @@ function PostForm() {
             name="body"
             onChange={onChange}
             value={values.body}
-            error={error ? true : false}
+            error={
+              error
+                ? {
+                    content: error.graphQLErrors[0].message,
+                    pointing: "below",
+                  }
+                : false
+            }
           />
           <Button type="submit" color="teal">
             Submit
           </Button>
         </Form.Field>
       </Form>
-      {error && (
-        <div className="ui error message" style={{ marginBottom: 20 }}>
-          <ul className="list">
-            <li>{error.graphQLErrors[0].message}</li>
-          </ul>
-        </div>
-      )}
     </>
   );
 }
